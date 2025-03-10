@@ -35,5 +35,10 @@
 	<a href="{base}/photoapp">Photo App</a>
 	<a href="{base}/register">Register</a>
 	<a href="{base}/shoppinglist">Shoppinglist</a>
+	<a href="{base}/Memory">Memory</a>
+	<a href="{base}/chat">Chat</a>
+	<a href="{base}/search">Search</a>
+	<a href="{base}/badux">Bad UX</a>
+	<a href="{base}/shop">Shop</a>
 </nav>
 <slot />
