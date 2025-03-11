@@ -6,7 +6,8 @@
 		<meta name="viewport" content="width=device-width" />
 		
 		<link href="./_app/immutable/assets/0.C3dnJjVU.css" rel="stylesheet">
-		<link href="./_app/immutable/assets/9.DjtJ6ZyJ.css" rel="stylesheet">
+		<link href="./_app/immutable/assets/2.C3cOHKt8.css" rel="stylesheet">
+		<link href="./_app/immutable/assets/12.zgvvZ7xD.css" rel="stylesheet">
 		<link rel="modulepreload" href="./_app/immutable/entry/start.DLAteeIw.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/entry.CyVCQAYf.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/scheduler.BzhZGcQd.js">
@@ -16,10 +17,12 @@
 		<link rel="modulepreload" href="./_app/immutable/chunks/index.BKAe3f3O.js">
 		<link rel="modulepreload" href="./_app/immutable/nodes/0.BBLRBhgF.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/_commonjsHelpers.CqkleIqs.js">
-		<link rel="modulepreload" href="./_app/immutable/nodes/9.BF2YrNJ2.js">
+		<link rel="modulepreload" href="./_app/immutable/nodes/2.B8ODuewE.js">
+		<link rel="modulepreload" href="./_app/immutable/nodes/12.Ua1mM0Hr.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/each.D6YF6ztN.js">
 	</head>
 	<body data-sveltekit-preload-data="hover" data-theme="skeleton">
-		<div style="display: contents">  <nav data-svelte-h="svelte-1be1puq"><a href="./">Hem</a> <a href="./photoapp">Photo App</a> <a href="./register">Register</a> <a href="./shoppinglist">Shoppinglist</a> <a href="./Memory">Memory</a> <a href="./chat">Chat</a> <a href="./search">Search</a> <a href="./badux">Bad UX</a> <a href="./shop">Shop</a></nav> <h1 class="svelte-1aqtn58" data-svelte-h="svelte-gi4h5v">Photoapp</h1> <p data-svelte-h="svelte-12xlpwa">Denna sida innehåller <strong>fina</strong> bilder</p> <div class="photos svelte-1aqtn58"><div class="image-wrapper svelte-1aqtn58"><img src="https://picsum.photos/id/70/367/267" alt="Flexbox egenskaper" class="svelte-1aqtn58"></div> <div class="image-wrapper svelte-1aqtn58"><img src="https://picsum.photos/id/88/367/267" alt="Flexbox cheatsheet" class="svelte-1aqtn58"></div> <div class="image-wrapper svelte-1aqtn58"><img src="https://picsum.photos/id/93/367/267" alt="Flexbox egenskaper" class="svelte-1aqtn58"></div> </div> 
+		<div style="display: contents">  <nav data-svelte-h="svelte-1be1puq"><a href="./">Hem</a> <a href="./photoapp">Photo App</a> <a href="./register">Register</a> <a href="./shoppinglist">Shoppinglist</a> <a href="./Memory">Memory</a> <a href="./chat">Chat</a> <a href="./search">Search</a> <a href="./badux">Bad UX</a> <a href="./shop">Shop</a></nav> <main class="svelte-75wndi"><form><input type="text" placeholder="Sök upp en pokemon" class="svelte-p13407"></form> </main> <div class="backdrop svelte-75wndi"></div> 
 			
 			<script>
 				{
@@ -29,14 +32,14 @@
 
 					const element = document.currentScript.parentElement;
 
-					const data = [null,null];
+					const data = [null,null,null];
 
 					Promise.all([
 						import("./_app/immutable/entry/start.DLAteeIw.js"),
 						import("./_app/immutable/entry/app._Jys-X1S.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
-							node_ids: [0, 9],
+							node_ids: [0, 2, 12],
 							data,
 							form: null,
 							error: null
