@@ -1,5 +1,6 @@
  <script>
     import { goto } from "$app/navigation";
+    import { base } from '$app/paths';
     let search;
     let pastSearches = [];
     if (typeof window !== 'undefined') {
@@ -8,7 +9,7 @@
     function doSearch(){
         pastSearches.push(search)
         sessionStorage.setItem("pastSearches", pastSearches)
-        goto('/search/'+search.toLowerCase())
+        goto({base}+'/search/'+search.toLowerCase())
     }
  </script>
  <form on:submit|preventDefault={()=> doSearch()}>
