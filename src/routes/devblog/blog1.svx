@@ -1,0 +1,15 @@
+---
+title: "Blog 1"
+date: "2025-04-09"
+---
+
+# Inledning
+Jag har börjat med "lägga in ett nytt pass" sidan för min träningsdagbok projekt.
+Jag har skapat en ny route "journal" for mitt projekt och i routen har jag en till route "new" för den sidan.
+
+# Detaljer i sidan
+Input fields finns för tid och datum och med hjälp av copilot har jag skapat stjärnor som man fyller i för-
+sömn, kost och känsla. Stjärnorna verkar dock börja från fel håll när man hoverar och det ska jag fixa nästa lektion.
+Man kan även lägga till en bild på passets detaljer (typ om det är skrivet på whiteboard och har bild)
+Det går att skriva in en kommentar.
+Det finns en add knapp som inte gör så mycket än

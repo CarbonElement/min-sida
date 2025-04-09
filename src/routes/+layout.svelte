@@ -29,7 +29,7 @@
   height: 100vh;
   width: 100vw;
 }
-</style>
+</style> <!----
 <nav>
 	<a href="{base}/">Hem</a>
 	<a href="{base}/photoapp">Photo App</a>
@@ -40,5 +40,5 @@
 	<a href="{base}/search">Search</a>
 	<a href="{base}/badux">Bad UX</a>
 	<a href="{base}/shop">Shop</a>
-</nav>
+</nav>--->
 <slot />

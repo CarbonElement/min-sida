@@ -15,12 +15,13 @@
 
             <label for="color">Favourite Color:</label>
             <select id="color" bind:value={color}>
-                <option value="blue">Blue</option>
-                <option value="red">Red</option>
-                <option value="white">White</option>
+                {#each colors as c}
+                <option value={c.value}>{c.namn}</option>
+                {/each}
             </select>
             <input id="submit" type="submit" value="Registrera">
         </form>
+        <p>Har du redan ett konto? <a href={base+'/login'}>Logga in</a></p>
     </div>
 </main>
 
@@ -31,6 +32,7 @@
         width: 100%;
         height: 100%;
         padding: 5%;
+        min-height: 500px;
     }
 
     input, select{
@@ -39,6 +41,9 @@
 
 #submit {
     color: white;
+    background-color: gray;
+    padding: 5px;
+    border: 2px solid black;
 }    
 .container{
         display: flex;
@@ -51,12 +56,20 @@
         height: 80%;
         background-color: #3a2e3b;
         margin: auto;
-}     
+        min-width: 300px;
+        min-height: 500px;
+}   
+
+a {
+    color: rosybrown;
+    text-decoration: underline;
+}
         
 </style>
 
 <script>
-    let colors = [{namn: "Blue", value:"blue"}, {namn: "Red", value:"red"}, {namn: "White", value:"white"}]
+    import {base} from '$app/paths'; 
+    let colors = [{namn: "Blue", value:"blue"}, {namn: "Red", value:"red"}, {namn: "White", value:"white"},{namn: "Black", value:"black"}, {namn: "Green", value:"green"}]
     let color = "black"
     let name = ""
     let email = ""

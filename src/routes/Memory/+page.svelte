@@ -14,7 +14,29 @@
     let result = ""
     for (let i=0; i<12; i++) {
         cards.push({image: images[i%6], flipped: false, matched: false})
+        shuffleArray(cards)
     }
+
+    function reset(){
+        redPoints=0;
+        bluePoints=0;
+        result = ""
+        cards.forEach((card)=>{
+            card.flipped=false
+            card.matched=false
+        })
+        shuffleArray(cards)
+        cards=cards
+    }
+    // https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+    function shuffleArray(array) {
+    for (var i = array.length - 1; i >= 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+}
 
     function flip(card)  {
         if(flipCount == 2) return;
@@ -65,6 +87,8 @@
     <img alt="front" class="back" src={card.image}>
     </div>
     {/each}
+
+    <button on:click={() => reset()}>Reset</button>
 </main>
 <aside class="blue">
     <p>{bluePoints}</p>
@@ -75,7 +99,7 @@
 <aside class:blue = {blueTurn} class="turn">
     
 </aside>
-<p style="text-align: centre;">{result}</p>
+<p id="center">{result}</p>
 <style>
     main {
         margin: 30px;
@@ -95,6 +119,11 @@
         transition: transform 0.5s;
 
         
+    }
+
+    .card:hover {
+        transform: scale(1.1);
+        transition: transform 0.2s;
     }
     .card img {
         width: 100%;
@@ -155,5 +184,30 @@
         box-shadow: 0 0 10px 10px yellowgreen;
         z-index: -1;
     }
+
+    #center {
+        text-align: center;
+    }
+
+    button {
+        background-color: black;
+        padding:10px;
+        border: 1px solid white;
+    }
+
+    
+    @media (min-height: 500px){
+        main{
+            grid-template-columns: repeat(4, 100px);
+            grid-template-rows: repeat(3, 100px);
+        }
+    }
+    @media (max-height: 500px){
+        main{
+            grid-template-columns: repeat(6, 100px);
+            grid-template-rows: repeat(2, 100px);
+        }
+    }
+          
 
 </style>
