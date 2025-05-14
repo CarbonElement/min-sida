@@ -1,0 +1,14 @@
+---
+title: "Blog 2"
+date: "2025-05-07"
+---
+
+# Inledning
+Jag har gjort klart sidan för att lägga in ett nytt pass. Jag använder localstorage för att spara alla pass och konverterar bilderna 
+till base64 för att kunna ladda upp bilderna till localstorage. Jag har även med hjälp av copilot snabbt skapat en sida för att visa alla pass under /sessions
+
+# Detaljer i sessions sidan
+I sessions sidan kan man se all information för varje pass inklusive datum, tid, bild, kommentar och all statistik för den dagen och passet.
+
+# Nästa steg?
+ Nu kommer jag jobba på hemsidan där jag ska visa de senaste sessions och allmän statistik för i veckan.

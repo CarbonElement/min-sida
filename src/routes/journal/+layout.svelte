@@ -10,7 +10,7 @@
     main {
         height: 100vh;
         width: 100vw;
-        background-color: rgb(211, 238, 249);
+        background-color: #f9f9f9;
     }
 
     header {

@@ -1,1 +1,1 @@
-{"type":"data","nodes":[null,{"type":"data","data":[{"posts":1},[2],{"slug":3,"title":4,"date":5},"blog1","Blog 1","2025-04-09"],"uses":{}}]}
+{"type":"data","nodes":[null,{"type":"data","data":[{"posts":1},[2,6,10],{"slug":3,"title":4,"date":5},"blog3","Blog 3","2025-05-14",{"slug":7,"title":8,"date":9},"blog2","Blog 2","2025-05-07",{"slug":11,"title":12,"date":13},"blog1","Blog 1","2025-04-09"],"uses":{}}]}

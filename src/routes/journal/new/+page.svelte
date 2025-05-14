@@ -4,6 +4,8 @@
     let sleep = 0;
     let nutrition = 0;
     let feel = 0;
+    let notes = '';
+    let image = null; // Placeholder for the Base64 string of the uploaded image
 
     function setSleep(value) {
         sleep = value;
@@ -16,6 +18,71 @@
     function setFeel(value) {
         feel = value;
     }
+
+    let hoverSleep = 0;
+
+    function setHoverSleep(value) {
+        hoverSleep = value;
+    }
+
+    function clearHoverSleep() {
+        hoverSleep = 0;
+    }
+    
+    let hoverNutrition = 0;
+
+    function setHoverNutrition(value) {
+        hoverNutrition = value;
+    }
+
+    function clearHoverNutrition() {
+        hoverNutrition = 0;
+    }
+
+    let hoverFeel = 0;
+
+    function setHoverFeel(value) {
+        hoverFeel = value;
+    }
+
+    function clearHoverFeel() {
+        hoverSleep = 0;
+    }
+
+    function handleImageUpload(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = () => {
+                image = reader.result; // Save the Base64 string
+                console.log('Image uploaded:', image);
+            };
+            reader.readAsDataURL(file); // Convert the image to a Base64 string
+        }
+    }
+
+    function newSession() {
+        if (!date || !time || sleep === 0 || nutrition === 0 || feel === 0) {
+            alert('Please fill in all fields before submitting.');
+            return;
+        }
+        const sessionData = {
+            date,
+            time,
+            sleep,
+            nutrition,
+            feel,
+            notes,
+            image
+        };
+        console.log('New session data:', sessionData);
+        const existingSessions = JSON.parse(localStorage.getItem('sessions')) || [];
+        existingSessions.push(sessionData);
+        localStorage.setItem('sessions', JSON.stringify(existingSessions));
+
+        alert('Session saved successfully!');
+    }
+
 </script>
 <main>
     <div class="container">
@@ -30,11 +97,13 @@
         <label for="sleep">Sleep:</label>
         <div class="stars">
             {#each Array(5).fill(0).map((_, i) => i) as i}
-                <span 
-                    class="star {i < sleep ? 'filled' : ''}" 
-                    on:click={() => setSleep(i + 1)}>
-                    ★
-                </span>
+            <span 
+                class="star {i < (hoverSleep || sleep) ? 'filled' : ''}" 
+                on:click={() => setSleep(i + 1)}
+                on:mouseover={() => setHoverSleep(i + 1)}
+                on:mouseout={clearHoverSleep}>
+                ★
+            </span>
             {/each}
         </div>
 
@@ -42,8 +111,10 @@
         <div class="stars">
             {#each Array(5).fill(0).map((_, i) => i) as i}
                 <span 
-                    class="star {i < nutrition ? 'filled' : ''}" 
-                    on:click={() => setNutrition(i + 1)}>
+                    class="star {i < (hoverNutrition || nutrition) ? 'filled' : ''}" 
+                    on:click={() => setNutrition(i + 1)}
+                    on:mouseover={() => setHoverNutrition(i + 1)}
+                    on:mouseout={clearHoverNutrition}>
                     ★
                 </span>
             {/each}
@@ -53,20 +124,22 @@
         <div class="stars">
             {#each Array(5).fill(0).map((_, i) => i) as i}
                 <span 
-                    class="star {i < feel ? 'filled' : ''}" 
-                    on:click={() => setFeel(i + 1)}>
+                    class="star {i < (hoverFeel || feel) ? 'filled' : ''}" 
+                    on:click={() => setFeel(i + 1)}
+                    on:mouseover={() => setHoverFeel(i + 1)}
+                    on:mouseout={clearHoverFeel}>
                     ★
                 </span>
             {/each}
         </div>
         
         <label for="image">Workout details:</label>
-        <input type="file" id="image" accept="image/*" />
+        <input type="file" id="image" accept="image/*" on:change={handleImageUpload} />
 
         <label for="notes">Notes:</label>
-        <textarea id="notes" rows="2" placeholder="Write your notes here..."></textarea>
+        <textarea id="notes" rows="2" placeholder="Write your notes here..." bind:value={notes}></textarea>
 
-        <button type="button">Add</button>
+        <button type="button" on:click={() => newSession()}>Add</button>
     </div>
 </main>
 
@@ -132,25 +205,27 @@
     }
 
     .stars {
-        display: flex;
-        justify-content: center;
-        flex-direction: row;
-        margin-bottom: 12px;
-    }
+    display: flex;
+    justify-content: center;
+    flex-direction: row; /* Keep this normal */
+    margin-bottom: 12px;
+}
 
-    .star {
-        font-size: 1.8rem;
-        color: #ccc;
-        cursor: pointer;
-        transition: color 0.3s ease;
-    }
+.star {
+    font-size: 1.8rem;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    position: relative;
+}
 
-    .star.filled {
-        color: #FFD700;
-    }
+.star.filled {
+    color: #FFD700;
+}
 
-    .star:hover,
-    .star:hover ~ .star {
-        color: #FFD700;
-    }
+
+/* Highlight stars to the LEFT of the hovered star */
+.star:hover {
+    color: #FFD700;
+}
 </style>

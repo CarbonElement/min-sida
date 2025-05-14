@@ -1,0 +1,16 @@
+---
+title: "Blog 3"
+date: "2025-05-14"
+---
+
+# Inledning
+Jag har skapat en grund layout för hemsidan med de senaste passen och statistiken under senaste veckorna.
+Sidan består av två containers. En som innehåller de 4 senaste passen och en till container som ska innehålla statistik men som är tom just Nu
+
+# Problem jag har stött på
+Jag har skapat en knapp för att lägga till pass som består av ett plus. Men jag har inte kunnat centrera plusset i kvadraten (bordern)
+Jag har lagt ner mycket tid på det och inte kunnat lösa det så jag har lämnat det till senare.
+
+# Nästa steg
+Göra klart hemsidan och lägga in senaste passen från localstorage istället för placeholders och generell vecko statistik.
+Statistiken ska jag räkna ut genom att ta genomsnitten av alla indicators som sömn, kost osv under senaste veckan och lägga in det som stjärnor.
