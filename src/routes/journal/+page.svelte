@@ -1,4 +1,5 @@
 <script>
+    import { base } from '$app/paths';
 let sessions = [];
 
     function loadSessions() {
@@ -51,20 +52,19 @@ let sessions = [];
 <main>
     <section class="recent">
         <h2>Recent sessions</h2>
-        <a href="/journal/new"><button class="add" >+</button></a>
+        <a href="{base}/journal/new"><button class="add" >+</button></a>
         <div class="sessions">
             {#each sessions.slice(-5).reverse() as session}
-            <div on:click={() => window.location.href="/journal/sessions/" + session.id} class="square">
+            <div on:click={() => window.location.href=base+"/journal/sessions/" + session.id} class="square">
                 <img class="swimmer" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQujAgmFQCaOtgfzwGzDDRcOonOJ7C2m-hqlQ&s">
                 <p class="date">{session.date}</p>
             </div>
             {/each}
         </div>
-        <a class="link show" href="/journal/sessions">Show all</a>
+        <a class="link show" href="{base}/journal/sessions">Show all</a>
     </section>
     <section class="stats-main">
         <h2>Weekly Statistics </h2>
-        <a class="link more" href="/journal/">More</a>
         <div class="stats">
 
             <div class="stats_square">

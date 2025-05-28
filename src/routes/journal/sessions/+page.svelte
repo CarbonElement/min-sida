@@ -1,4 +1,6 @@
 <script>
+	import { base } from "$app/paths";
+
     let sessions = [];
 
     
@@ -12,7 +14,7 @@
     loadSessions();
 
     function goBack() {
-        window.location.href = '/journal/';
+        window.location.href = base + '/journal/';
     }
 </script>
 
