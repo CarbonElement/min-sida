@@ -1,6 +1,7 @@
 <script>
     import {base} from '$app/paths';
     import { onMount } from 'svelte';
+    import { goto } from '$app/navigation';
     onMount(() => {
         id = Math.random().toString(36).substr(2, 9);
         console.log('Generated ID:', id);
@@ -91,7 +92,7 @@
         localStorage.setItem('sessions', JSON.stringify(existingSessions));
 
         alert('Session saved successfully!');
-        window.location.href = base+ '/journal/sessions/' + id; 
+        goto(base+ '/journal/sessions/' + id);
     }
 
 </script>

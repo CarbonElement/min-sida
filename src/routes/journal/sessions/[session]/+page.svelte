@@ -1,5 +1,6 @@
 <script>
     import {base} from '$app/paths';
+    import {goto} from '$app/navigation';
     export let data;
     let sessionId = data.params.session;
     function getSession() {
@@ -17,7 +18,7 @@
     let session = getSession();
 
     function goBack() {
-        window.location.href = base+'/journal/';
+        goto(base+'/journal/');
     }
 </script>
 
