@@ -1,11 +1,19 @@
 <script>
+    import { onMount } from 'svelte';
+    onMount(() => {
+        id = Math.random().toString(36).substr(2, 9);
+        console.log('Generated ID:', id);
+    });
     let time = '';
     let date = '';
     let sleep = 0;
     let nutrition = 0;
     let feel = 0;
     let notes = '';
-    let image = null; // Placeholder for the Base64 string of the uploaded image
+    let id;
+    console.log(id)
+
+    let image = null; 
 
     function setSleep(value) {
         sleep = value;
@@ -67,6 +75,7 @@
             return;
         }
         const sessionData = {
+            id,
             date,
             time,
             sleep,
@@ -81,6 +90,7 @@
         localStorage.setItem('sessions', JSON.stringify(existingSessions));
 
         alert('Session saved successfully!');
+        window.location.href = '/journal/sessions/' + id; 
     }
 
 </script>
@@ -94,43 +104,49 @@
         <label for="time">Time:</label>
         <input type="time" id="time" bind:value={time} />
 
-        <label for="sleep">Sleep:</label>
-        <div class="stars">
-            {#each Array(5).fill(0).map((_, i) => i) as i}
-            <span 
-                class="star {i < (hoverSleep || sleep) ? 'filled' : ''}" 
-                on:click={() => setSleep(i + 1)}
-                on:mouseover={() => setHoverSleep(i + 1)}
-                on:mouseout={clearHoverSleep}>
-                ★
-            </span>
-            {/each}
+        <div class="rating-row">
+            <label for="sleep">Sleep:</label>
+            <div class="stars">
+                {#each Array(5).fill(0).map((_, i) => i) as i}
+                    <span 
+                        class="star {i < (hoverSleep || sleep) ? 'filled' : ''}" 
+                        on:click={() => setSleep(i + 1)}
+                        on:mouseover={() => setHoverSleep(i + 1)}
+                        on:mouseout={clearHoverSleep}>
+                        ★
+                    </span>
+                {/each}
+            </div>
         </div>
 
-        <label for="nutrition">Nutrition:</label>
-        <div class="stars">
-            {#each Array(5).fill(0).map((_, i) => i) as i}
-                <span 
-                    class="star {i < (hoverNutrition || nutrition) ? 'filled' : ''}" 
-                    on:click={() => setNutrition(i + 1)}
-                    on:mouseover={() => setHoverNutrition(i + 1)}
-                    on:mouseout={clearHoverNutrition}>
-                    ★
-                </span>
-            {/each}
+        <div class="rating-row">
+            <label for="nutrition">Nutrition:</label>
+            <div class="stars">
+                {#each Array(5).fill(0).map((_, i) => i) as i}
+                    <span 
+                        class="star {i < (hoverNutrition || nutrition) ? 'filled' : ''}" 
+                        on:click={() => setNutrition(i + 1)}
+                        on:mouseover={() => setHoverNutrition(i + 1)}
+                        on:mouseout={clearHoverNutrition}>
+                        ★
+                    </span>
+                {/each}
+            </div>
         </div>
 
-        <label for="feel">Feel:</label>
-        <div class="stars">
-            {#each Array(5).fill(0).map((_, i) => i) as i}
-                <span 
-                    class="star {i < (hoverFeel || feel) ? 'filled' : ''}" 
-                    on:click={() => setFeel(i + 1)}
-                    on:mouseover={() => setHoverFeel(i + 1)}
-                    on:mouseout={clearHoverFeel}>
-                    ★
-                </span>
-            {/each}
+        <div class="rating-row">
+            <label for="feel">Feel:</label>
+            <div class="stars">
+                {#each Array(5).fill(0).map((_, i) => i) as i}
+                    <span 
+                        class="star {i < (hoverFeel || feel) ? 'filled' : ''}" 
+                        on:click={() => setFeel(i + 1)}
+                        on:mouseover={() => setHoverFeel(i + 1)}
+                        on:mouseout={clearHoverFeel}>
+                        ★
+                    </span>
+                {/each}
+            </div>
         </div>
         
         <label for="image">Workout details:</label>
@@ -140,6 +156,7 @@
         <textarea id="notes" rows="2" placeholder="Write your notes here..." bind:value={notes}></textarea>
 
         <button type="button" on:click={() => newSession()}>Add</button>
+        <button class="back-btn" on:click={() => window.location.href='/journal/'}>← Back to Home</button>
     </div>
 </main>
 
@@ -204,28 +221,34 @@
         background-color: #0056b3;
     }
 
+    .rating-row {
+        display: flex;
+        align-items: center;
+        margin-bottom: 12px;
+        gap: 10px;
+    }
+
     .stars {
-    display: flex;
-    justify-content: center;
-    flex-direction: row; /* Keep this normal */
-    margin-bottom: 12px;
-}
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 0; 
+    }
 
-.star {
-    font-size: 1.8rem;
-    color: #ccc;
-    cursor: pointer;
-    transition: color 0.3s ease;
-    position: relative;
-}
+    .star {
+        font-size: 1.8rem;
+        color: #ccc;
+        cursor: pointer;
+        transition: color 0.3s ease;
+        position: relative;
+    }
 
-.star.filled {
-    color: #FFD700;
-}
+    .star.filled {
+        color: #FFD700;
+    }
 
 
-/* Highlight stars to the LEFT of the hovered star */
-.star:hover {
-    color: #FFD700;
-}
+    
+    .star:hover {
+        color: #FFD700;
+    }
 </style>

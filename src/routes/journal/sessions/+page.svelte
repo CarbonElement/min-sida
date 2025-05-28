@@ -1,19 +1,24 @@
 <script>
     let sessions = [];
 
-    // Load sessions from localStorage
+    
     function loadSessions() {
         if (typeof window !== 'undefined') {
             sessions = JSON.parse(localStorage.getItem('sessions')) || [];
         }
     }
 
-    // Load sessions when the component is initialized
+    
     loadSessions();
+
+    function goBack() {
+        window.location.href = '/journal/';
+    }
 </script>
 
 <main>
     <div class="sessions-container">
+        <button class="back-btn" on:click={goBack}>← Back to Home</button>
         <h1>Saved Sessions</h1>
         {#if sessions.length > 0}
             {#each sessions as session}
@@ -61,6 +66,22 @@
 </main>
 
 <style>
+
+    .back-btn {
+        background: none;
+        border: none;
+        color: #0070f3;
+        font-size: 1rem;
+        cursor: pointer;
+        margin-bottom: 16px;
+        padding: 0;
+        text-align: left;
+        transition: color 0.2s;
+    }
+    .back-btn:hover {
+        color: #005bb5;
+        text-decoration: underline;
+    }
     main {
         display: flex;
         justify-content: center;
@@ -128,7 +149,7 @@
     }
 
     .star {
-        font-size: 1.5rem; /* Reduced font size for smaller stars */
+        font-size: 1.5rem; 
         color: #ccc;
         transition: color 0.3s ease;
     }

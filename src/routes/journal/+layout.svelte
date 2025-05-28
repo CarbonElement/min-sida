@@ -1,5 +1,5 @@
 <header>
-    <h1>Training Journal Pro</h1>
+    <h1>Workout Journal Pro</h1>
 </header>
 <main>
   <slot />
