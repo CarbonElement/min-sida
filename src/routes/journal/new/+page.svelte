@@ -158,7 +158,7 @@
         <textarea id="notes" rows="2" placeholder="Write your notes here..." bind:value={notes}></textarea>
 
         <button type="button" on:click={() => newSession()}>Add</button>
-        <button class="back-btn" on:click={() => window.location.href='/journal/'}>← Back to Home</button>
+        <button class="back-btn" on:click={() => goto(base+"/journal")}>← Back to Home</button>
     </div>
 </main>
 
