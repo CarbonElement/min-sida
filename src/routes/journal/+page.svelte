@@ -1,5 +1,6 @@
 <script>
     import { base } from '$app/paths';
+    import { goto } from "$app/navigation";
 let sessions = [];
 
     function loadSessions() {
@@ -55,8 +56,8 @@ let sessions = [];
         <a href="{base}/journal/new"><button class="add" >+</button></a>
         <div class="sessions">
             {#each sessions.slice(-5).reverse() as session}
-            <div on:click={() => window.location.href=base+"/journal/sessions/" + session.id} class="square">
-                <img class="swimmer" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQujAgmFQCaOtgfzwGzDDRcOonOJ7C2m-hqlQ&s">
+            <div on:click={() => goto(base+"/journal/sessions/" + session.id)} class="square">
+                <img class="swimmer" alt="swimmer" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQujAgmFQCaOtgfzwGzDDRcOonOJ7C2m-hqlQ&s">
                 <p class="date">{session.date}</p>
             </div>
             {/each}

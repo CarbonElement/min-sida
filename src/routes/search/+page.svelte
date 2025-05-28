@@ -1,5 +1,4 @@
  <script>
-	import { replaceState } from "$app/navigation";
     import { goto } from "$app/navigation";
     import { base } from '$app/paths';
     let search;
