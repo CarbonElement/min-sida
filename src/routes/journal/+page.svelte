@@ -266,7 +266,7 @@
 
     @media (max-width: 700px) {
         .star {
-            font-size: 1.3em;
+            font-size: 1.2em;
         }
 
         .bold {
