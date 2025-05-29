@@ -1,7 +1,7 @@
 <script>
     import { base } from '$app/paths';
     import { goto } from "$app/navigation";
-let sessions = [];
+    let sessions = [];
 
     function loadSessions() {
         if (typeof window !== 'undefined') {
@@ -39,7 +39,8 @@ let sessions = [];
         return {
             sleep: +(sum.sleep / weeklySessions.length).toFixed(2),
             nutrition: +(sum.nutrition / weeklySessions.length).toFixed(2),
-            feel: +(sum.feel / weeklySessions.length).toFixed(2)
+            feel: +(sum.feel / weeklySessions.length).toFixed(2),
+            count: weeklySessions.length 
         };
     }
 
@@ -47,7 +48,13 @@ let sessions = [];
     let generalScore = Math.round(
         (weeklyAverages.sleep + weeklyAverages.nutrition + weeklyAverages.feel) / 3
     );
-    let sessionsCount = sessions.length;
+    let sessionsCount = weeklyAverages.count || 0;
+
+    $: sortedSessions = [...sessions].sort((a, b) => {
+        const dateA = new Date(`${a.date}T${a.time || '00:00'}`);
+        const dateB = new Date(`${b.date}T${b.time || '00:00'}`);
+        return dateB - dateA;
+    });
 </script>
 
 <main>
@@ -55,7 +62,7 @@ let sessions = [];
         <h2>Recent sessions</h2>
         <a href="{base}/journal/new"><button class="add" >+</button></a>
         <div class="sessions">
-            {#each sessions.slice(-5).reverse() as session}
+            {#each sortedSessions.slice(0, 5) as session}
             <div on:click={() => goto(base+"/journal/sessions/" + session.id)} class="square">
                 <img class="swimmer" alt="swimmer" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQujAgmFQCaOtgfzwGzDDRcOonOJ7C2m-hqlQ&s">
                 <p class="date">{session.date}</p>
@@ -69,7 +76,7 @@ let sessions = [];
         <div class="stats">
 
             <div class="stats_square">
-                <p>Sleep</p>
+                <p class="bold">Sleep</p>
                 <div class="stars">
                             {#each Array(5).fill(0).map((_, i) => i) as i}
                                 <span class="star {i < weeklyAverages.sleep ? 'filled' : ''}">★</span>
@@ -77,7 +84,7 @@ let sessions = [];
                 </div>
             </div>
             <div class="stats_square">
-                <p>Nutrition</p>
+                <p class="bold">Nutrition</p>
                 <div class="stars">
                             {#each Array(5).fill(0).map((_, i) => i) as i}
                                 <span class="star {i < weeklyAverages.nutrition ? 'filled' : ''}">★</span>
@@ -86,7 +93,7 @@ let sessions = [];
             </div>
           
             <div class="stats_square">
-                <p>Feel</p>
+                <p class="bold">Feel</p>
                 <div class="stars">
                             {#each Array(5).fill(0).map((_, i) => i) as i}
                                 <span class="star {i < weeklyAverages.feel ? 'filled' : ''}">★</span>
@@ -94,11 +101,11 @@ let sessions = [];
                 </div>
             </div>
               <div class="stats_square">
-                <p>Sessions</p>
-                <p class="bold">{sessionsCount}</p>
+                <p class="bold">Sessions</p>
+                <p class="bold three">{sessionsCount}</p>
             </div>
             <div class="stats_square">
-                <p>General score</p>
+                <p class="bold">General score</p>
                 <div class="stars">
                             {#each Array(5).fill(0).map((_, i) => i) as i}
                                 <span class="star {i < generalScore ? 'filled' : ''}">★</span>
@@ -110,6 +117,13 @@ let sessions = [];
 </main>
 
 <style>
+
+    .three {
+        border: 1px solid black;
+        width: 30px;
+        height: 30px;
+        border-radius: 100%;
+    }
 
     .bold {
         font-weight: bold;
@@ -186,8 +200,8 @@ let sessions = [];
         font-style: bold;
         right: 10%;
         border: 2px solid black;
-        width: 20px;
-        height: 20px;
+        width: 25px;
+        height: 25px;
         line-height: 10px;
         text-align: center;
         font-weight: bold;
@@ -241,12 +255,22 @@ let sessions = [];
     }
 
     .star {
-        font-size: 1.5rem; 
+        font-size: 1.7rem; 
         color: #ccc;
         transition: color 0.3s ease;
     }
 
     .star.filled {
         color: #FFD700;
+    }
+
+    @media (max-width: 700px) {
+        .star {
+            font-size: 1.3em;
+        }
+
+        .bold {
+            font-size: 1.3em;
+        }
     }
 </style>

@@ -17,14 +17,25 @@
     function goBack() {
         goto(base + '/journal/');
     }
+
+    function removeSession(id) {
+        sessions = sessions.filter(session => session.id !== id);
+        localStorage.setItem('sessions', JSON.stringify(sessions));
+    }
+
+    $: sortedSessions = [...sessions].sort((a, b) => {
+        const dateA = new Date(`${a.date}T${a.time || '00:00'}`);
+        const dateB = new Date(`${b.date}T${b.time || '00:00'}`);
+        return dateB - dateA;
+    });
 </script>
 
 <main>
     <div class="sessions-container">
         <button class="back-btn" on:click={goBack}>← Back to Home</button>
-        <h1>Saved Sessions</h1>
+        <h1>All Sessions</h1>
         {#if sessions.length > 0}
-            {#each sessions as session}
+            {#each sortedSessions as session (session.id)}
                 <div class="session">
                     <p><strong>Date:</strong> {session.date}</p>
                     <p><strong>Time:</strong> {session.time}</p>
@@ -60,6 +71,7 @@
                     {#if session.image}
                         <img src={session.image} alt="Uploaded Image" class="session-image" />
                     {/if}
+                    <button class="remove-btn" on:click={() => removeSession(session.id)}>Delete</button>
                 </div>
             {/each}
         {:else}
@@ -159,5 +171,20 @@
 
     .star.filled {
         color: #FFD700;
+    }
+
+    .remove-btn {
+        background: #ff4d4f;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 6px 14px;
+        margin-top: 8px;
+        cursor: pointer;
+        font-size: 0.95rem;
+        transition: background 0.2s;
+    }
+    .remove-btn:hover {
+        background: #d9363e;
     }
 </style>

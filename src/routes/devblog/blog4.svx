@@ -1,0 +1,23 @@
+---
+title: "Blog 4"
+date: "2025-05-29"
+---
+
+# Vad jag har gjort
+Jag har jobbat med att lägga in de 5 senaste passen från localstorage i containern med recent sessions. Det går att gå in på varje pass nu och se information om passet.
+Jag har ändrat strukturen för JSON datan för varje pass och lagt in en ny field "id" som har en unik id för att man ska kunna gå in i varje individuell pass och se information.
+Passen i recent sessions och all sessions sorteras med filter funktionen som jämför datum och sorterar passen med senaste datum först. Detta gjorde jag med hjälp av copilot. Statistiken sammanställs med en funktion "getWeeklyAverages" som räknar på genomsnittet för de olika fields senaste 7 dagarna.
+Jag återanvände koden för stjärnorna från saved sessions sidorna och har använt media-query för att få hemsidan att se naturlig ut på en mobil.
+Jag har även lagt till funktionaliteten att ta bort pass i all sessions sidan.
+
+# Problem jag har stött på
+Dynamiska routingen till varje session fungerade inte på github pages men det löste jag genom att använda goto() istället for windows.location.href  
+
+Hemsidan täcker inte hela skärmen på små skärmar. Det har jag inte kunnat lösa. Jag har testat ändra width på olika sätt på main.
+
+
+# Nästa steg (om jag hade haft tid)
+* Jag hade velat lägga in fields för hur länge träningen pågick så man kan se totala träningstimmarna. 
+* Lägga mer tid på designen för hemsidan.   
+* Kunna se stastik månadsvis.
+* Kunna se pass veckovis och månadsvis.
