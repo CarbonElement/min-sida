@@ -100,10 +100,7 @@
                             {/each}
                 </div>
             </div>
-              <div class="stats_square">
-                <p class="bold">Sessions</p>
-                <p class="bold three">{sessionsCount}</p>
-            </div>
+              
             <div class="stats_square">
                 <p class="bold">General score</p>
                 <div class="stars">
@@ -111,6 +108,10 @@
                                 <span class="star {i < generalScore ? 'filled' : ''}">★</span>
                             {/each}
                 </div>
+            </div>
+            <div class="stats_square">
+                <p class="bold">Sessions</p>
+                <p class="bold three">{sessionsCount}</p>
             </div>
         </div>
     </section>
