@@ -145,13 +145,6 @@
         font-size: 0.9em;
         text-decoration: underline;
     }
-
-    .more {
-        position: absolute;
-        right: 10%;
-        font-size: 0.9em;
-        text-decoration: underline;
-    }
     h2 {
         color:black;
         font-size: 1.3em;
@@ -270,7 +263,21 @@
         }
 
         .bold {
-            font-size: 1.3em;
+            font-size: 1.2em;
+        }
+
+    
+    }
+
+    @media (max-width: 429px) {
+
+        .stats_square {
+            width: 40%;
+            height: 25%;
+        }
+
+        .stats  {
+            height:80%
         }
     }
 </style>
